@@ -8,7 +8,8 @@ function App() {
     const [stage, setStage] = useState("ready"); // "ready" | "journey"
 
     return (
-        <div className="app-root">
+        <div>Random Thing</div>
+       /* <div className="app-root">
             <HeartsBackground />
 
             <div className="app-overlay">
@@ -18,7 +19,7 @@ function App() {
                     <JourneyScene />
                 )}
             </div>
-        </div>
+        </div>*/
     );
 }
 
