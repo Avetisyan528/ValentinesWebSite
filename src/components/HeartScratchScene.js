@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import "./JourneyScene.css";
 
-const SCRATCH_RADIUS = 26;
-const CLEAR_THRESHOLD = 0.55;
+const SCRATCH_RADIUS = 28;
+const CLEAR_THRESHOLD = 0.5;
 
 export default function HeartScratchScene() {
     const canvasRef = useRef(null);
@@ -11,25 +11,36 @@ export default function HeartScratchScene() {
     const [cleared, setCleared] = useState(false);
 
     useEffect(() => {
-        const canvas = canvasRef.current;
-        const container = containerRef.current;
-        if (!canvas || !container) return;
+        function setupCanvas() {
+            const canvas = canvasRef.current;
+            const container = containerRef.current;
+            if (!canvas || !container) return;
 
-        const rect = container.getBoundingClientRect();
-        const dpr = window.devicePixelRatio || 1;
+            const rect = container.getBoundingClientRect();
+            const rawDpr = window.devicePixelRatio || 1;
+            const dpr = Math.min(2, rawDpr); // clamp for mobile Safari stability
 
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-        canvas.style.width = `${rect.width}px`;
-        canvas.style.height = `${rect.height}px`;
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            canvas.style.width = `${rect.width}px`;
+            canvas.style.height = `${rect.height}px`;
 
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
+            const ctx = canvas.getContext("2d");
+            if (!ctx) return;
 
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        ctx.fillStyle = "#e11d48"; // red overlay
-        ctx.fillRect(0, 0, rect.width, rect.height);
-        ctx.globalCompositeOperation = "destination-out";
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.globalCompositeOperation = "source-over";
+            ctx.fillStyle = "#e11d48"; // red overlay
+            ctx.fillRect(0, 0, rect.width, rect.height);
+            ctx.globalCompositeOperation = "destination-out";
+        }
+
+        setupCanvas();
+
+        window.addEventListener("resize", setupCanvas);
+        return () => {
+            window.removeEventListener("resize", setupCanvas);
+        };
     }, []);
 
     function getPos(e) {
@@ -37,8 +48,8 @@ export default function HeartScratchScene() {
         if (!canvas) return null;
         const rect = canvas.getBoundingClientRect();
 
-        const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-        const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+        const clientX = e.clientX;
+        const clientY = e.clientY;
 
         return {
             x: clientX - rect.left,
@@ -115,13 +126,10 @@ export default function HeartScratchScene() {
                 <canvas
                     ref={canvasRef}
                     className="heart-scratch-canvas"
-                    onMouseDown={handlePointerDown}
-                    onMouseMove={handlePointerMove}
-                    onMouseUp={handlePointerUp}
-                    onMouseLeave={handlePointerUp}
-                    onTouchStart={handlePointerDown}
-                    onTouchMove={handlePointerMove}
-                    onTouchEnd={handlePointerUp}
+                    onPointerDown={handlePointerDown}
+                    onPointerMove={handlePointerMove}
+                    onPointerUp={handlePointerUp}
+                    onPointerLeave={handlePointerUp}
                 />
             </div>
 
