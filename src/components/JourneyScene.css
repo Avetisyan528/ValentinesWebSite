@@ -1,0 +1,72 @@
+.journey-root {
+    /* Reserved if you want a wrapper later */
+}
+
+/* Heart scratch scene */
+
+.heart-scratch-wrapper {
+    width: min(720px, calc(100vw - 32px));
+    padding: 22px 22px 20px;
+    border-radius: 22px;
+    background: radial-gradient(circle at top, #ffeaf6 0%, #fbd6ff 45%, #f4c4ff 100%);
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.heart-scratch-title {
+    font-size: 26px;
+    font-weight: 800;
+    text-align: center;
+    color: #8b0033;
+}
+
+.heart-scratch-subtitle {
+    font-size: 16px;
+    text-align: center;
+    color: #4a2940;
+    max-width: 420px;
+}
+
+.heart-scratch-heart {
+    position: relative;
+    width: min(320px, 70vw);
+    height: min(290px, 64vw);
+    margin-top: 6px;
+    clip-path: path(
+        "M 150 260 C 60 200 10 150 10 90 C 10 50 40 20 80 20 C 110 20 135 40 150 65 C 165 40 190 20 220 20 C 260 20 290 50 290 90 C 290 150 240 200 150 260 Z"
+    );
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.35);
+}
+
+.heart-scratch-image {
+    position: absolute;
+    inset: 0;
+    background-image: url("/images/final-heart.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: saturate(1.1);
+}
+
+.heart-scratch-canvas {
+    position: absolute;
+    inset: 0;
+    touch-action: none;
+    cursor: pointer;
+}
+
+.heart-scratch-heart-cleared .heart-scratch-canvas {
+    opacity: 0;
+    transition: opacity 400ms ease-out;
+}
+
+.heart-scratch-done {
+    margin-top: 8px;
+    font-size: 18px;
+    color: #2b1420;
+    text-align: center;
+}

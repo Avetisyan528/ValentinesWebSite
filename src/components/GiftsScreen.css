@@ -1,0 +1,342 @@
+.gifts-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.gifts-instruction-box {
+    width: min(520px, calc(100vw - 32px));
+    padding: 22px 22px 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    color: #1d1d1f;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+}
+
+.gifts-instruction {
+    font-size: 26px;
+    line-height: 1.25;
+    font-weight: 800;
+    text-align: center;
+    color: #8b0033;
+    text-shadow: 0 2px 6px rgba(255, 255, 255, 0.6);
+    animation: fadeInUp 280ms ease;
+    margin-bottom: 4px;
+}
+
+.gifts-floating-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.gift-button {
+    position: absolute;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px 6px 4px;
+    border-radius: 18px;
+    transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease, opacity 200ms ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    min-width: auto;
+    animation-name: floatGift;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    pointer-events: auto;
+}
+
+.gift-button:not(:disabled):hover {
+    transform: translateY(-4px) scale(1.04);
+    filter: brightness(1.05);
+}
+
+.gift-button:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.gift-button-opened {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.gift-icon {
+    position: relative;
+    width: 88px;
+    height: 80px;
+    filter: drop-shadow(0 10px 20px rgba(171, 15, 75, 0.4));
+    animation: giftBounce 2.2s ease-in-out infinite;
+}
+
+.gift-button-opened .gift-icon {
+    animation: none;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
+}
+
+.gift-lid {
+    position: absolute;
+    inset: 0;
+    height: 32px;
+    border-radius: 16px 16px 10px 10px;
+    background: linear-gradient(135deg, #ff8ba7, #ff4f8b);
+}
+
+.gift-box {
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    bottom: 0;
+    top: 20px;
+    border-radius: 12px 12px 18px 18px;
+    background: linear-gradient(160deg, #ff2d55, #ff006f);
+}
+
+.gift-ribbon-vertical {
+    position: absolute;
+    top: -4px;
+    bottom: 0;
+    left: 50%;
+    width: 14px;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: linear-gradient(180deg, #fff3f8, #ffe0f0);
+}
+
+.gift-ribbon-horizontal {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: 18px;
+    height: 14px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #fff3f8, #ffe0f0);
+}
+
+.gifts-next-button {
+    align-self: center;
+    margin-top: 4px;
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #ff006f, #ff9a9e);
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 14px 32px rgba(185, 0, 71, 0.6);
+    transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease;
+}
+
+.gifts-next-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.gifts-next-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 10px 20px rgba(120, 0, 46, 0.6);
+}
+
+/* Overlay */
+
+.gift-overlay {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    z-index: 10;
+}
+
+.gift-overlay-backdrop {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(255, 192, 203, 0.5), rgba(0, 0, 0, 0.75));
+    animation: fadeIn 220ms ease;
+}
+
+.gift-overlay-card {
+    position: relative;
+    width: min(480px, calc(100vw - 48px));
+    padding: 22px 22px 18px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    animation: popIn 220ms ease-out;
+}
+
+.gift-overlay-image-wrap {
+    width: 160px;
+    height: 160px;
+    border-radius: 26px;
+    overflow: hidden;
+    background: #ffe3f1;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+.gift-overlay-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gift-overlay-title {
+    font-size: 30px;
+    font-weight: 900;
+    color: #ff006f;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-shadow: 0 3px 10px rgba(255, 0, 112, 0.35);
+    animation: sparkle 900ms ease-in-out infinite alternate;
+}
+
+.gift-overlay-message {
+    font-size: 18px;
+    text-align: center;
+    color: #2b1420;
+    max-width: 320px;
+}
+
+.gift-overlay-close {
+    margin-top: 6px;
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 26px;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: #111827;
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4);
+    transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+}
+
+.gift-overlay-close:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}
+
+.gift-overlay-close:active {
+    transform: translateY(1px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Animations */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes giftBounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes floatGift {
+    0% {
+        transform: translate(-50%, 0) rotate(var(--gift-rotation, 0deg));
+    }
+    50% {
+        transform: translate(-50%, -10px) rotate(var(--gift-rotation, 0deg));
+    }
+    100% {
+        transform: translate(-50%, 0) rotate(var(--gift-rotation, 0deg));
+    }
+}
+
+/* Opening animation when gift becomes opened */
+.gift-button-opened .gift-lid {
+    animation: giftOpenLid 380ms ease-out forwards;
+}
+
+.gift-button-opened .gift-box {
+    animation: giftOpenBox 380ms ease-out forwards;
+}
+
+@keyframes giftOpenLid {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        transform-origin: center left;
+    }
+    60% {
+        transform: translateY(-14px) rotate(-18deg);
+    }
+    100% {
+        transform: translateY(-18px) rotate(-22deg);
+    }
+}
+
+@keyframes giftOpenBox {
+    0% {
+        transform: scaleY(1);
+        transform-origin: center bottom;
+    }
+    100% {
+        transform: scaleY(0.96);
+    }
+}
+
+@keyframes sparkle {
+    from {
+        text-shadow: 0 2px 8px rgba(255, 0, 112, 0.25);
+        transform: translateY(0);
+    }
+    to {
+        text-shadow: 0 4px 16px rgba(255, 0, 112, 0.6);
+        transform: translateY(-1px);
+    }
+}
+

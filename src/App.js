@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import HeartsBackground from "./components/HeartsBackground";
+import { useState } from "react";
+import ReadyJourneyBox from "./components/ReadyJourneyBox";
+import JourneyScene from "./components/JourneyScene";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [stage, setStage] = useState("ready"); // "ready" | "journey"
+
+    return (
+        <div className="app-root">
+            <HeartsBackground />
+
+            <div className="app-overlay">
+                {stage === "ready" ? (
+                    <ReadyJourneyBox onYes={() => setStage("journey")} />
+                ) : (
+                    <JourneyScene />
+                )}
+            </div>
+        </div>
+    );
 }
 
 export default App;
