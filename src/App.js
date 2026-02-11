@@ -1,11 +1,11 @@
-import HeartsBackground from "./components/HeartsBackground";
-import { useState } from "react";
-import ReadyJourneyBox from "./components/ReadyJourneyBox";
-import JourneyScene from "./components/JourneyScene";
+//import HeartsBackground from "./components/HeartsBackground";
+//import { useState } from "react";
+//import ReadyJourneyBox from "./components/ReadyJourneyBox";
+//import JourneyScene from "./components/JourneyScene";
 import "./App.css";
 
 function App() {
-    const [stage, setStage] = useState("ready"); // "ready" | "journey"
+    //const [stage, setStage] = useState("ready"); // "ready" | "journey"
 
     return (
         <div>Random Thing</div>
