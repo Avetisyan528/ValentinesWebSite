@@ -8,6 +8,7 @@ function App() {
     const [stage, setStage] = useState("ready"); // "ready" | "journey"
 
     return (
+        //Some Comment, push
        <div className="app-root">
             <HeartsBackground />
 
