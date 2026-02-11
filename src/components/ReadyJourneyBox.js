@@ -29,10 +29,10 @@ export default function ReadyJourneyBox({ onYes }) {
             <div className="ready-title">Are you ready for a lovely journey?👀</div>
             <div className="ready-buttons">
                 <button className="ready-btn ready-btn-no" type="button" onClick={handleNo}>
-                    {noLabel}😑
+                    {noLabel}
                 </button>
                 <button className="ready-btn ready-btn-yes" type="button" onClick={onYes}>
-                    YES🥹
+                    YES
                 </button>
             </div>
         </div>
