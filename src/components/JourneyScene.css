@@ -7,7 +7,7 @@
     box-sizing: border-box;
     padding: 22px 22px 20px;
     border-radius: 22px;
-    background: radial-gradient(circle at top, #ffeaf6 0%, #fbd6ff 45%, #f4c4ff 100%);
+    background: rgba(255, 255, 255, 0.92);
     box-shadow: 0 22px 70px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
@@ -21,13 +21,13 @@
     font-size: 26px;
     font-weight: 800;
     text-align: center;
-    color: #8b0033;
+    color: #000000;
 }
 
 .heart-scratch-subtitle {
     font-size: 16px;
     text-align: center;
-    color: #4a2940;
+    color: #000000;
     max-width: 420px;
 }
 
@@ -50,7 +50,7 @@
 .heart-scratch-image {
     position: absolute;
     inset: 0;
-    background-image: url("/images/final-heart.jpg");
+    background-image: url("/images/final-heart.png");
     background-size: cover;
     background-position: center;
     filter: saturate(1.1);
@@ -71,6 +71,6 @@
 .heart-scratch-done {
     margin-top: 8px;
     font-size: 18px;
-    color: #2b1420;
+    color: #ff0000;
     text-align: center;
 }

@@ -153,7 +153,7 @@
 
 .gifts-next-button:active {
     transform: translateY(1px);
-    box-shadow: 0 10px 20px rgba(120, 0, 46, 0.6);
+    box-shadow: 0 10px 20px rgba(186, 0, 0, 0.6);
 }
 
 /* Overlay */
@@ -175,7 +175,6 @@
 
 .gift-overlay-card {
     position: relative;
-    width: min(480px, calc(100vw - 48px));
     padding: 22px 22px 18px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.97);
@@ -188,11 +187,11 @@
 }
 
 .gift-overlay-image-wrap {
-    width: 160px;
-    height: 160px;
+    width: 300px;
+    height: 520px;
     border-radius: 26px;
     overflow: hidden;
-    background: #ffe3f1;
+    background: #ff0000;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 
@@ -206,10 +205,10 @@
 .gift-overlay-title {
     font-size: 30px;
     font-weight: 900;
-    color: #ff006f;
+    color: #ff0000;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    text-shadow: 0 3px 10px rgba(255, 0, 112, 0.35);
+    text-shadow: 0 3px 10px rgba(33, 71, 184, 0.35);
     animation: sparkle 900ms ease-in-out infinite alternate;
 }
 

@@ -30,7 +30,7 @@ export default function HeartScratchScene() {
 
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             ctx.globalCompositeOperation = "source-over";
-            ctx.fillStyle = "#e11d48"; // red overlay
+            ctx.fillStyle = "#ff0000"; // red overlay
             ctx.fillRect(0, 0, rect.width, rect.height);
             ctx.globalCompositeOperation = "destination-out";
         }

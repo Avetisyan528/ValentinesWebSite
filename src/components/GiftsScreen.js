@@ -1,5 +1,19 @@
 import { useMemo, useState } from "react";
 import "./GiftsScreen.css";
+import Athletic from '../images/Athletic.mp4';
+import Charismatic from '../images/Charismatic.mp4';
+import Confident from '../images/Confident.mp4';
+import Cute from '../images/Cute.mp4';
+import Dramatic from '../images/Dramatic.mp4';
+import Dreamy from '../images/Dreamy.mp4';
+import Energetic from '../images/Energetic.mp4';
+import Gorgeous from '../images/Gorgeous.mp4';
+import Hot from '../images/Hot.mp4';
+import Joyful from '../images/Joyful.mp4';
+import Lovely from '../images/Lovely.mp4';
+import Magical from '../images/Magical.mp4';
+import Powerful from '../images/Powerful.mp4';
+import Sweet from '../images/Sweet.mp4';
 
 const INSTRUCTION_MESSAGES = [
     "Pick a gift that you want 💌",
@@ -15,63 +29,120 @@ const INSTRUCTION_MESSAGES = [
 const GIFTS = [
     {
         id: 1,
-        title: "Cute",
+        title: "Athletic",
         message: "You’re effortlessly adorable in everything you do 🧸",
-        image: "/images/gift-1.jpg",
+        video: Athletic,
         closeLabel: "I KNOW",
     },
     {
         id: 2,
-        title: "Joyful",
+        title: "Charismatic",
         message: "You turn the smallest moments into the happiest memories ✨",
-        image: "/images/gift-2.jpg",
+        video: Charismatic,
         closeLabel: "YEP",
     },
     {
         id: 3,
-        title: "Dramatic",
+        title: "Confident",
         message: "Your little dramas are my favorite entertainment 🎭",
-        image: "/images/gift-3.jpg",
+        video: Confident,
         closeLabel: "GUILTY",
     },
     {
         id: 4,
-        title: "Confident",
+        title: "Cute",
         message: "The way you own every room is insanely attractive 💼",
-        image: "/images/gift-4.jpg",
+        video: Cute,
         closeLabel: "DAMN RIGHT",
     },
     {
         id: 5,
-        title: "Hot",
+        title: "Dramatic",
         message: "You’re literally irresistible, and you know it 🔥",
-        image: "/images/gift-5.jpg",
+        video: Dramatic,
         closeLabel: "YUP",
     },
     {
         id: 6,
-        title: "Beautiful",
+        title: "Dreamy",
         message: "I could look at you forever and never get tired 💫",
-        image: "/images/gift-6.jpg",
+        video: Dreamy,
         closeLabel: "SURELY",
     },
     {
         id: 7,
+        title: "Energetic",
+        message: "Your kindness melts my heart every single time 💖",
+        video: Energetic,
+        closeLabel: "AWW",
+    },
+    {
+        id: 8,
+        title: "Gorgeous",
+        message: "Your kindness melts my heart every single time 💖",
+        video: Gorgeous,
+        closeLabel: "AWW",
+    },
+    {
+        id: 9,
+        title: "Hot",
+        message: "Your kindness melts my heart every single time 💖",
+        video: Hot,
+        closeLabel: "AWW",
+    },
+    {
+        id: 10,
+        title: "Joyful",
+        message: "Your kindness melts my heart every single time 💖",
+        video: Joyful,
+        closeLabel: "AWW",
+    },
+    {
+        id: 11,
+        title: "Lovely",
+        message: "Your kindness melts my heart every single time 💖",
+        video: Lovely,
+        closeLabel: "AWW",
+    },
+    {
+        id: 12,
+        title: "Magical",
+        message: "Your kindness melts my heart every single time 💖",
+        video: Magical,
+        closeLabel: "AWW",
+    },
+
+    {
+        id: 13,
+        title: "Powerful",
+        message: "Your kindness melts my heart every single time 💖",
+        video: Powerful,
+        closeLabel: "AWW",
+    },
+    {
+        id: 14,
         title: "Sweet",
         message: "Your kindness melts my heart every single time 💖",
-        image: "/images/gift-7.jpg",
+        video: Sweet,
         closeLabel: "AWW",
     },
 ];
 
 const GIFT_POSITIONS = [
-    { top: 3, left: 10 },
-    { top: 12, left: 50 },
-    { top: 20, left: 15 },
-    { top: 28, left: 60 },
-    { top: 65, left: 17 },
-    { top: 71, left: 60 },
-    { top: 79, left: 30 },
+    { top: 5, left: 20 },
+    { top: 5, left: 55 },
+    { top: 18, left: 10 },
+    { top: 18, left: 37 },
+    { top: 18, left: 65 },
+    { top: 31, left: 20 },
+    { top: 31, left: 55 },
+    { top: 58, left: 20 },
+    { top: 58, left: 55 },
+    { top: 71, left: 10 },
+    { top: 71, left: 37 },
+    { top: 71, left: 67 },
+    { top: 84, left: 20 },
+    { top: 84, left: 55 },
 ];
 
 function shuffleArray(items) {
@@ -181,12 +252,9 @@ export default function GiftsScreen({ onDone }) {
                     <div className="gift-overlay-backdrop" />
                     <div className="gift-overlay-card">
                         <div className="gift-overlay-image-wrap">
-                            {/* Replace image URLs with real photos of her */}
-                            <img
-                                src={activeGift.image}
-                                alt={activeGift.title}
-                                className="gift-overlay-image"
-                            />
+                            <video autoPlay loop playsInline preload="auto" className="gift-overlay-image">
+                                <source src={activeGift.video} type="video/mp4"/>
+                            </video>
                         </div>
 
                         <div className="gift-overlay-title">
