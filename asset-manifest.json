@@ -1,16 +1,30 @@
 {
   "files": {
-    "main.css": "/ValentinesWebSite/static/css/main.f586e856.css",
-    "main.js": "/ValentinesWebSite/static/js/main.1a485f49.js",
+    "main.css": "/ValentinesWebSite/static/css/main.1c548288.css",
+    "main.js": "/ValentinesWebSite/static/js/main.158c9ea8.js",
     "static/js/453.2392a21f.chunk.js": "/ValentinesWebSite/static/js/453.2392a21f.chunk.js",
-    "static/media/final-heart.jpg": "/ValentinesWebSite/static/media/final-heart.6a1358e82ab045e9b167.jpg",
+    "static/media/Joyful.mp4": "/ValentinesWebSite/static/media/Joyful.74860972dea725c65029.mp4",
+    "static/media/Dreamy.mp4": "/ValentinesWebSite/static/media/Dreamy.c60527ae3321543109ee.mp4",
+    "static/media/Hot.mp4": "/ValentinesWebSite/static/media/Hot.8c3aa7c51740068cab94.mp4",
+    "static/media/Magical.mp4": "/ValentinesWebSite/static/media/Magical.396ef6275db9d80fb3e3.mp4",
+    "static/media/Sweet.mp4": "/ValentinesWebSite/static/media/Sweet.031e7b75522d057ad273.mp4",
+    "static/media/Athletic.mp4": "/ValentinesWebSite/static/media/Athletic.c48854c22ef9d99fadfe.mp4",
+    "static/media/Charismatic.mp4": "/ValentinesWebSite/static/media/Charismatic.3dd2a9296bc0cb52e253.mp4",
+    "static/media/Cute.mp4": "/ValentinesWebSite/static/media/Cute.de9d2dc3d7dd7c378ae5.mp4",
+    "static/media/Energetic.mp4": "/ValentinesWebSite/static/media/Energetic.824bd85e2bbdab9c6bd0.mp4",
+    "static/media/Powerful.mp4": "/ValentinesWebSite/static/media/Powerful.eaa93040b07da9458400.mp4",
+    "static/media/Dramatic.mp4": "/ValentinesWebSite/static/media/Dramatic.efccacd01871428d58d9.mp4",
+    "static/media/Lovely.mp4": "/ValentinesWebSite/static/media/Lovely.df3bd1b535f436d176bb.mp4",
+    "static/media/Gorgeous.mp4": "/ValentinesWebSite/static/media/Gorgeous.84496818a99c5b3db126.mp4",
+    "static/media/Confident.mp4": "/ValentinesWebSite/static/media/Confident.99836a6390b424c5d345.mp4",
+    "static/media/final-heart.png": "/ValentinesWebSite/static/media/final-heart.7b820fe2f72a4d3dfea6.png",
     "index.html": "/ValentinesWebSite/index.html",
-    "main.f586e856.css.map": "/ValentinesWebSite/static/css/main.f586e856.css.map",
-    "main.1a485f49.js.map": "/ValentinesWebSite/static/js/main.1a485f49.js.map",
+    "main.1c548288.css.map": "/ValentinesWebSite/static/css/main.1c548288.css.map",
+    "main.158c9ea8.js.map": "/ValentinesWebSite/static/js/main.158c9ea8.js.map",
     "453.2392a21f.chunk.js.map": "/ValentinesWebSite/static/js/453.2392a21f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f586e856.css",
-    "static/js/main.1a485f49.js"
+    "static/css/main.1c548288.css",
+    "static/js/main.158c9ea8.js"
   ]
 }
