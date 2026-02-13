@@ -5,7 +5,11 @@ const INSTRUCTION_MESSAGES = [
     "Pick a gift that you want 💌",
     "Another surprise awaits! 🎁",
     "Keep going, there’s more ❤️",
-    "You’re doing great, keep unwrapping ✨",
+    "You’re doing great, keep unwrapping 1✨",
+    "You’re doing great, keep unwrapping 2✨",
+    "You’re doing great, keep unwrapping 3✨",
+    "You’re doing great, keep unwrapping 4✨",
+    "You’re doing great, keep unwrapping 5✨",
 ];
 
 const GIFTS = [
@@ -61,13 +65,13 @@ const GIFTS = [
 ];
 
 const GIFT_POSITIONS = [
-    { top: 18, left: 20 },
-    { top: 22, left: 70 },
-    { top: 40, left: 15 },
-    { top: 42, left: 50 },
-    { top: 40, left: 85 },
-    { top: 62, left: 28 },
-    { top: 64, left: 72 },
+    { top: 3, left: 10 },
+    { top: 12, left: 50 },
+    { top: 20, left: 15 },
+    { top: 28, left: 60 },
+    { top: 65, left: 17 },
+    { top: 71, left: 60 },
+    { top: 79, left: 30 },
 ];
 
 function shuffleArray(items) {
