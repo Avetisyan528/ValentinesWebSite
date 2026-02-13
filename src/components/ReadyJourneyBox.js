@@ -11,7 +11,7 @@ export default function ReadyJourneyBox({ onYes }) {
             "Try YES",
             "Nice try",
             "Still no?",
-            "Okay… now press YES",
+            "Just give up",
         ],
         []
     );
@@ -21,7 +21,17 @@ export default function ReadyJourneyBox({ onYes }) {
     const noLabel = noPhrases[Math.min(noClicks, noPhrases.length - 1)];
 
     function handleNo() {
-        setNoClicks((c) => c + 1);
+        setNoClicks((current) => {
+            const lastIndex = noPhrases.length - 1;
+            const next = Math.min(current + 1, lastIndex);
+
+            // When the label reaches "Just give up", treat NO like YES.
+            if (next === lastIndex) {
+                onYes();
+            }
+
+            return next;
+        });
     }
 
     return (

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./JourneyScene.css";
 
 const SCRATCH_RADIUS = 28;
@@ -9,6 +9,24 @@ export default function HeartScratchScene() {
     const containerRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [cleared, setCleared] = useState(false);
+    const [questionAnswered, setQuestionAnswered] = useState(false);
+    const [noClicks, setNoClicks] = useState(0);
+
+    const noPhrases = useMemo(
+        () => [
+            "NO",
+            "Think again",
+            "Are you sure?",
+            "Not that one",
+            "Try YES",
+            "Nice try",
+            "Still no?",
+            "Just give up",
+        ],
+        []
+    );
+
+    const noLabel = noPhrases[Math.min(noClicks, noPhrases.length - 1)];
 
     useEffect(() => {
         function setupCanvas() {
@@ -110,9 +128,27 @@ export default function HeartScratchScene() {
         }
     }
 
+    function handleQuestionYes() {
+        setQuestionAnswered(true);
+    }
+
+    function handleQuestionNo() {
+        setNoClicks((current) => {
+            const lastIndex = noPhrases.length - 1;
+            const next = Math.min(current + 1, lastIndex);
+
+            // When the label reaches "Just give up", treat NO like YES.
+            if (next === lastIndex) {
+                handleQuestionYes();
+            }
+
+            return next;
+        });
+    }
+
     return (
         <div className="heart-scratch-wrapper">
-            <div className="heart-scratch-title">Scratch the heart to reveal 💓</div>
+            <div className="heart-scratch-title">Scratch the heart to reveal a sweet memory 💓</div>
             <div className="heart-scratch-subtitle">
                 Gently rub the red heart away and see what’s hiding under it.
             </div>
@@ -134,8 +170,34 @@ export default function HeartScratchScene() {
             </div>
 
             {cleared && (
-                <div className="heart-scratch-done">
-                    You got it. This is all for you. ❤️
+                <div className="heart-scratch-after">
+                    {questionAnswered ? (
+                        <div className="heart-scratch-done">
+                            Then let&apos;s make a new one today together. ❤️
+                        </div>
+                    ) : (
+                        <>
+                            <div className="heart-scratch-question">
+                                Do you want to make a new one today?
+                            </div>
+                            <div className="ready-buttons heart-scratch-buttons">
+                                <button
+                                    type="button"
+                                    className="ready-btn ready-btn-no"
+                                    onClick={handleQuestionNo}
+                                >
+                                    {noLabel}
+                                </button>
+                                <button
+                                    type="button"
+                                    className="ready-btn ready-btn-yes"
+                                    onClick={handleQuestionYes}
+                                >
+                                    YES
+                                </button>
+                            </div>
+                        </>
+                    )}
                 </div>
             )}
         </div>

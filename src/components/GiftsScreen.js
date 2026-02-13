@@ -15,99 +15,109 @@ import Magical from '../images/Magical.mp4';
 import Powerful from '../images/Powerful.mp4';
 import Sweet from '../images/Sweet.mp4';
 
-const INSTRUCTION_MESSAGES = [
-    "Pick a gift that you want 💌",
-    "Another surprise awaits! 🎁",
-    "Keep going, there’s more ❤️",
-    "You’re doing great, keep unwrapping 1✨",
-    "You’re doing great, keep unwrapping 2✨",
-    "You’re doing great, keep unwrapping 3✨",
-    "You’re doing great, keep unwrapping 4✨",
-    "You’re doing great, keep unwrapping 5✨",
+const BASE_INSTRUCTION = "Pick a gift that you want 💌";
+
+// Message that appears after each gift video, in the same sequence
+// as GIFTS above (index 0 = first gift, etc.).
+const AFTER_GIFT_MESSAGES = [
+    "See? Being this athletic on you is just unfair. Keep going 🏃‍♀️",
+    "Your charisma could light up any room. Keep going ✨",
+    "That confidence is dangerously charming. Keep going 😏",
+    "You’re cute in a way that should be illegal. Keep going 🧸",
+    "Even your drama is my favorite show. Keep going 🎭",
+    "You’re dreamy in every single frame. Keep going 💫",
+    "Your energy is contagious and I love it. Keep going ⚡",
+    "You’re so gorgeous it’s almost unfair. Keep going 💋",
+    "You’re honestly too hot to handle. Keep going 🔥",
+    "You bring so much joy into my life. Keep going 🌈",
+    "You’re lovely in every possible way. Keep going 🌹",
+    "You really are pure magic to me. Keep going ✨",
+    "You’re powerful in ways you don’t even see. Keep going 💪",
+    "See? You really are as sweet as a chocolate. Keep going 🍫",
 ];
 
 const GIFTS = [
     {
         id: 1,
         title: "Athletic",
-        message: "You’re effortlessly adorable in everything you do 🧸",
+        message: "Every move you make is so athletic and beautiful to watch 🏃‍♀️",
         video: Athletic,
         closeLabel: "I KNOW",
     },
     {
         id: 2,
         title: "Charismatic",
-        message: "You turn the smallest moments into the happiest memories ✨",
+        message: "Your charisma makes every room feel brighter the second you walk in ✨",
         video: Charismatic,
         closeLabel: "YEP",
     },
     {
         id: 3,
         title: "Confident",
-        message: "Your little dramas are my favorite entertainment 🎭",
+        message: "The way you carry yourself with confidence is ridiculously attractive 😏",
         video: Confident,
         closeLabel: "GUILTY",
     },
     {
         id: 4,
         title: "Cute",
-        message: "The way you own every room is insanely attractive 💼",
+        message: "Every little expression you make is impossibly, dangerously cute 🧸",
         video: Cute,
         closeLabel: "DAMN RIGHT",
     },
     {
         id: 5,
         title: "Dramatic",
-        message: "You’re literally irresistible, and you know it 🔥",
+        message: "Your tiny dramas are my favorite series—I never want them to end 🎭",
         video: Dramatic,
         closeLabel: "YUP",
     },
     {
         id: 6,
         title: "Dreamy",
-        message: "I could look at you forever and never get tired 💫",
+        message: "You are the kind of dreamy I could stare at forever 💫",
         video: Dreamy,
         closeLabel: "SURELY",
     },
     {
         id: 7,
         title: "Energetic",
-        message: "Your kindness melts my heart every single time 💖",
+        message: "Your energy makes even the most ordinary days feel exciting ⚡",
         video: Energetic,
         closeLabel: "AWW",
     },
     {
         id: 8,
         title: "Gorgeous",
-        message: "Your kindness melts my heart every single time 💖",
+        message: "You are so gorgeous it honestly feels unreal sometimes 💋",
         video: Gorgeous,
         closeLabel: "AWW",
     },
     {
         id: 9,
         title: "Hot",
-        message: "Your kindness melts my heart every single time 💖",
+        message: "You’re not just hot, you’re ‘I can’t-think-straight’ hot 🔥",
         video: Hot,
         closeLabel: "AWW",
     },
     {
         id: 10,
         title: "Joyful",
-        message: "Your kindness melts my heart every single time 💖",
+        message: "Your laugh and smile are pure joy; they change my whole day 🌈",
         video: Joyful,
         closeLabel: "AWW",
     },
     {
         id: 11,
         title: "Lovely",
-        message: "Your kindness melts my heart every single time 💖",
+        message: "Every part of you—inside and out—is genuinely lovely 🌹",
         video: Lovely,
         closeLabel: "AWW",
     },
     {
         id: 12,
         title: "Magical",
-        message: "Your kindness melts my heart every single time 💖",
+        message: "You make normal moments feel a little bit magical ✨",
         video: Magical,
         closeLabel: "AWW",
     },
@@ -115,14 +125,14 @@ const GIFTS = [
     {
         id: 13,
         title: "Powerful",
-        message: "Your kindness melts my heart every single time 💖",
+        message: "You’re powerful in ways you don’t even realize, and it inspires me 💪",
         video: Powerful,
         closeLabel: "AWW",
     },
     {
         id: 14,
         title: "Sweet",
-        message: "Your kindness melts my heart every single time 💖",
+        message: "You’re sweeter than my favorite chocolate and twice as addictive 🍫",
         video: Sweet,
         closeLabel: "AWW",
     },
@@ -170,13 +180,16 @@ export default function GiftsScreen({ onDone }) {
     const allOpened = openedIds.length === GIFTS.length;
 
     const currentInstruction = useMemo(() => {
-        if (allOpened) {
-            return "All gifts are open! Let’s move forward 💖";
+        const openedCount = openedIds.length;
+
+        if (openedCount === 0) {
+            return BASE_INSTRUCTION;
         }
 
-        const index = Math.min(openedIds.length, INSTRUCTION_MESSAGES.length - 1);
-        return INSTRUCTION_MESSAGES[index];
-    }, [allOpened, openedIds.length]);
+        // After each gift, show a specific line that matches that video.
+        const index = Math.min(openedCount - 1, AFTER_GIFT_MESSAGES.length - 1);
+        return AFTER_GIFT_MESSAGES[index];
+    }, [openedIds.length]);
 
     function handleGiftClick(buttonId) {
         if (openedIds.includes(buttonId)) return;

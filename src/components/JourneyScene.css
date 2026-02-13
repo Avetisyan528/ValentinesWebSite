@@ -71,6 +71,25 @@
 .heart-scratch-done {
     margin-top: 8px;
     font-size: 18px;
-    color: #ff0000;
+    color: #2b1420;
     text-align: center;
+}
+
+.heart-scratch-after {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.heart-scratch-question {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    color: #4a2940;
+}
+
+.heart-scratch-buttons {
+    margin-top: 4px;
 }
