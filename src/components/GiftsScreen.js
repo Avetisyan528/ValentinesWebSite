@@ -139,21 +139,22 @@ const GIFTS = [
 ];
 
 const GIFT_POSITIONS = [
-    { top: 5, left: 20 },
-    { top: 5, left: 55 },
-    { top: 18, left: 10 },
-    { top: 18, left: 37 },
-    { top: 18, left: 65 },
-    { top: 31, left: 20 },
-    { top: 31, left: 55 },
-    { top: 58, left: 20 },
-    { top: 58, left: 55 },
-    { top: 71, left: 10 },
-    { top: 71, left: 37 },
-    { top: 71, left: 67 },
-    { top: 84, left: 20 },
-    { top: 84, left: 55 },
+    { top: 5, left: 30 },
+    { top: 5, left: 65 },
+    { top: 18, left: 20 },
+    { top: 18, left: 47 },
+    { top: 18, left: 75 },
+    { top: 31, left: 30 },
+    { top: 31, left: 65 },
+    { top: 62, left: 30 },
+    { top: 62, left: 65 },
+    { top: 75, left: 20 },
+    { top: 75, left: 47 },
+    { top: 75, left: 77 },
+    { top: 88, left: 30 },
+    { top: 88, left: 65 },
 ];
+
 
 function shuffleArray(items) {
     const arr = [...items];
@@ -236,6 +237,11 @@ export default function GiftsScreen({ onDone }) {
                     const opened = openedIds.includes(gift.id);
                     const layout = giftLayout[index];
 
+                    // Random float for animation
+                    const floatDistance = 5 + Math.random() * 10; // 5-15px float
+                    const animationDuration = 2 + Math.random() * 2; // 2-4s
+                    const animationDelay = Math.random() * 2; // 0-2s
+
                     return (
                         <button
                             key={gift.id}
@@ -246,7 +252,9 @@ export default function GiftsScreen({ onDone }) {
                             style={{
                                 top: `${layout.top}%`,
                                 left: `${layout.left}%`,
-                                "--gift-rotation": `${layout.rotation}deg`,
+                                "--float-distance": `${floatDistance}px`,
+                                "--animation-duration": `${animationDuration}s`,
+                                "--animation-delay": `${animationDelay}s`,
                             }}
                         >
                             <div className="gift-icon">
@@ -259,6 +267,8 @@ export default function GiftsScreen({ onDone }) {
                     );
                 })}
             </div>
+
+
 
             {activeGift && (
                 <div className="gift-overlay">

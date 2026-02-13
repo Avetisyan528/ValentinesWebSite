@@ -46,7 +46,6 @@
 }
 
 .gift-button {
-    position: absolute;
     border: 0;
     background: transparent;
     cursor: pointer;
@@ -62,6 +61,10 @@
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     pointer-events: auto;
+    position: absolute;
+    transform: translate(-50%, 0); /* always upright */
+    animation: floatGift var(--animation-duration, 3s) ease-in-out infinite;
+    animation-delay: var(--animation-delay, 0s);
 }
 
 .gift-button:not(:disabled):hover {
@@ -93,24 +96,22 @@
 
 .gift-lid {
     position: absolute;
-    left: 8px;
-    right: 8px;
-    top: 4px;
-    height: 18px;
-    border-radius: 8px 8px 4px 4px;
-    background: linear-gradient(180deg, #ff5a5a, #e8001a);
+    inset: 0;
+    height: 32px;
+    border-radius: 16px 16px 10px 10px;
+    background: linear-gradient(160deg, #ff0000, #ea7878);
 }
 
 .gift-box {
     position: absolute;
-    left: 8px;
-    right: 8px;
-    bottom: 2px;
+    left: 4px;
+    right: 4px;
+    bottom: 0;
     top: 20px;
-    border-radius: 10px;
-    background: linear-gradient(180deg, #ff1c27, #a60010);
-    box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.28);
+    border-radius: 12px 12px 18px 18px;
+    background: linear-gradient(120deg, #ff0000, #ea7878);
 }
+
 
 .gift-ribbon-vertical {
     position: absolute;
@@ -292,14 +293,11 @@
 }
 
 @keyframes floatGift {
-    0% {
-        transform: translate(-50%, 0) rotate(var(--gift-rotation, 0deg));
+    0%, 100% {
+        transform: translate(-50%, 0);
     }
     50% {
-        transform: translate(-50%, -10px) rotate(var(--gift-rotation, 0deg));
-    }
-    100% {
-        transform: translate(-50%, 0) rotate(var(--gift-rotation, 0deg));
+        transform: translate(-50%, calc(-1 * var(--float-distance, 10px)));
     }
 }
 
