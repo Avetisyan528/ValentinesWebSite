@@ -4,22 +4,24 @@ import "./HeartsBackground.css";
 export default function HeartsBackground() {
     const [hearts, setHearts] = useState([]);
 
+    const MAX_HEARTS = 20;
+
     useEffect(() => {
         const interval = setInterval(() => {
-            const newHeart = {
-                id: Math.random(),
-                left: Math.random() * 100,
-                size: Math.random() * 50 + 10,
-                duration: Math.random() * 4 + 4,
-                opacity: 0.5 + Math.random() * 0.5,
-            };
-
-            setHearts((prev) => [...prev, newHeart]);
-
-            setTimeout(() => {
-                setHearts((prev) => prev.filter((h) => h.id !== newHeart.id));
-            }, newHeart.duration * 1000);
-
+            setHearts((prev) => {
+                if (prev.length >= MAX_HEARTS) return prev;
+                const newHeart = {
+                    id: Math.random(),
+                    left: Math.random() * 100,
+                    size: Math.random() * 50 + 10,
+                    duration: Math.random() * 4 + 4,
+                    opacity: 0.5 + Math.random() * 0.5,
+                };
+                setTimeout(() => {
+                    setHearts((p) => p.filter((h) => h.id !== newHeart.id));
+                }, newHeart.duration * 1000);
+                return [...prev, newHeart];
+            });
         }, 300);
 
         return () => clearInterval(interval);

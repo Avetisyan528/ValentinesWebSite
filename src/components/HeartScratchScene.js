@@ -116,17 +116,25 @@ export default function HeartScratchScene() {
         if (!ctx) return;
 
         const { width, height } = canvas;
-        const imageData = ctx.getImageData(0, 0, width, height);
-        const pixels = imageData.data;
+        if (width <= 0 || height <= 0) return;
 
-        let transparentCount = 0;
-        for (let i = 3; i < pixels.length; i += 4) {
-            if (pixels[i] === 0) transparentCount += 1;
-        }
-
-        const ratio = transparentCount / (pixels.length / 4);
-        if (ratio >= CLEAR_THRESHOLD) {
-            setCleared(true);
+        try {
+            const imageData = ctx.getImageData(0, 0, width, height);
+            const pixels = imageData.data;
+            const totalPixels = (width * height) | 0;
+            const step = totalPixels > 500000 ? 4 : 1;
+            let transparentCount = 0;
+            let sampled = 0;
+            for (let i = 3; i < pixels.length; i += 4 * step) {
+                if (pixels[i] === 0) transparentCount += 1;
+                sampled += 1;
+            }
+            const ratio = sampled > 0 ? transparentCount / sampled : 0;
+            if (ratio >= CLEAR_THRESHOLD) {
+                setCleared(true);
+            }
+        } catch (e) {
+            console.warn("Scratch check failed (e.g. low memory):", e);
         }
     }
 

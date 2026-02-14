@@ -54,21 +54,36 @@ function App() {
         ];
 
         let loadedCount = 0;
+        let cancelled = false;
+
+        function tryFinish() {
+            if (cancelled) return;
+            loadedCount++;
+            if (loadedCount >= videos.length) {
+                setVideosLoaded(true);
+            }
+        }
+
+        const timeout = setTimeout(() => {
+            if (cancelled) return;
+            setVideosLoaded(true);
+        }, 15000);
 
         videos.forEach((src) => {
             const video = document.createElement("video");
             video.src = src;
             video.preload = "auto";
 
-            video.oncanplaythrough = () => {
-                loadedCount++;
-                if (loadedCount === videos.length) {
-                    setVideosLoaded(true);
-                }
-            };
+            video.oncanplaythrough = tryFinish;
+            video.onerror = tryFinish;
 
             video.load();
         });
+
+        return () => {
+            cancelled = true;
+            clearTimeout(timeout);
+        };
     }, []);
 
     return (
