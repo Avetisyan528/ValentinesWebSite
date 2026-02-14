@@ -22,6 +22,8 @@ export default function HeartScratchScene() {
             "Nice try",
             "Still no?",
             "Just give up",
+            "Fine... I Will",
+            "",
         ],
         []
     );
@@ -173,12 +175,12 @@ export default function HeartScratchScene() {
                 <div className="heart-scratch-after">
                     {questionAnswered ? (
                         <div className="heart-scratch-done">
-                            Then let&apos;s make a new one today together. ❤️
+                            Then let's make new memories today❤️
                         </div>
                     ) : (
                         <>
                             <div className="heart-scratch-question">
-                                Do you want to make a new one today?
+                                Will you be my Valentine?🥹👀
                             </div>
                             <div className="ready-buttons heart-scratch-buttons">
                                 <button

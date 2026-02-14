@@ -12,6 +12,8 @@ export default function ReadyJourneyBox({ onYes }) {
             "Nice try",
             "Still no?",
             "Just give up",
+            "Alright... YES",
+            "",
         ],
         []
     );
